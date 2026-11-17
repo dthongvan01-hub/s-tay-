@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sổ tay Bông – Sợi – Vải | Trilingual Textile Handbook</title>
+<style>
+  :root {
+    --bg: #f6f4ef;
+    --surface: #ffffff;
+    --surface-2: #f0ede6;
+    --ink: #1f2a24;
+    --ink-2: #4a554d;
+    --line: #d8d3c7;
+    --accent: #1f6f50;
+    --accent-2: #c47a2b;
+    --danger: #a33b2e;
+    --shadow: 0 8px 24px rgba(31, 42, 36, 0.08);
+    --radius: 14px;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  [data-theme="dark"] {
+    --bg: #121613;
+    --surface: #1b211d;
+    --surface-2: #232b26;
+    --ink: #e7ece7;
+    --ink-2: #a8b3ab;
+    --line: #344038;
+    --accent: #6fbf96;
+    --accent-2: #e0a458;
+    --danger: #e07a6b;
+    --shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  button, input, select, textarea { font: inherit; }
+  button { cursor: pointer; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* Header */
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in srgb, var(--surface) 88%, transparent);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .topbar-inner {
+    max-width: 1280px; margin: 0 auto;
+    display: flex; align-items: center; gap: 16px;
+    padding: 12px 20px;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: -0.02em; }
+  .brand-mark {
+    width: 34px; height: 34px; border-radius: 9px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    display: grid; place-items: center; color: #fff; font-size: 15px; font-weight: 900;
+  }
+  .brand small { display: block; font-weight: 500; font-size: 11px; color: var(--ink-2); letter-spacing: 0.02em; }
+  .nav {
+    display: flex; gap: 4px; flex-wrap: wrap; margin-left: auto;
+  }
+  .nav button {
+    border: 0; background: transparent; color: var(--ink-2);
+    padding: 8px 12px; border-radius: 8px; font-size: 13px; font-weight: 600;
+  }
+  .nav button.active { background: var(--accent); color: #fff; }
+  .nav button:hover:not(.active) { background: var(--surface-2); color: var(--ink); }
+  .theme-btn {
+    border: 1px solid var(--line); background: var(--surface);
+    color: var(--ink); width: 38px; height: 38px; border-radius: 9px;
+    display: grid; place-items: center; font-size: 16px;
+  }
+
+  main { max-width: 1280px; margin: 0 auto; padding: 24px 20px 80px; }
+  .view { display: none; animation: fade 0.25s ease; }
+  .view.active { display: block; }
+  @keyframes fade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+  /* Typography */
+  h1 { font-size: clamp(24px, 3.4vw, 36px); letter-spacing: -0.03em; line-height: 1.2; }
+  h2 { font-size: 20px; letter-spacing: -0.02em; margin-bottom: 4px; }
+  h3 { font-size: 16px; letter-spacing: -0.01em; }
+  .muted { color: var(--ink-2); font-size: 13px; }
+  .eyebrow {
+    text-transform: uppercase; letter-spacing: 0.12em; font-size: 11px;
+    font-weight: 800; color: var(--accent-2); margin-bottom: 8px;
+  }
+  .card {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: var(--radius); box-shadow: var(--shadow); padding: 20px;
+  }
+  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .grid-auto { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  @media (max-width: 820px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+
+  .pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 10px; border-radius: 999px;
+    background: var(--surface-2); border: 1px solid var(--line);
+    font-size: 11px; font-weight: 700; color: var(--ink-2);
+  }
+  .pill.accent { background: color-mix(in srgb, var(--accent) 14%, var(--surface)); color: var(--accent); border-color: transparent; }
+
+  /* Dictionary */
+  .toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 16px 0; }
+  .search-wrap { position: relative; flex: 1 1 280px; }
+  .search-wrap input {
+    width: 100%; padding: 12px 14px 12px 40px;
+    border: 1px solid var(--line); border-radius: 10px;
+    background: var(--surface); color: var(--ink); outline: none;
+    transition: border 0.15s;
+  }
+  .search-wrap input:focus { border-color: var(--accent); }
+  .search-wrap::before {
+    content: "⌕"; position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+    color: var(--ink-2); font-size: 18px; pointer-events: none;
+  }
+  .chipbar { display: flex; gap: 6px; flex-wrap: wrap; }
+  .chip {
+    border: 1px solid var(--line); background: var(--surface);
+    padding: 7px 12px; border-radius: 999px; font-size: 12px; font-weight: 600;
+    color: var(--ink-2); transition: 0.15s;
+  }
+  .chip.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .dict-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  .dict-table th {
+    text-align: left; padding: 10px 12px; border-bottom: 2px solid var(--line);
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-2);
+    position: sticky; top: 70px; background: var(--surface); z-index: 2;
+  }
+  .dict-table td { padding: 11px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .dict-table tr:hover td { background: var(--surface-2); }
+  .vi { font-weight: 700; }
+  .zh { font-size: 16px; font-weight: 700; color: var(--accent); }
+  .py { font-size: 12px; color: var(--accent-2); font-style: italic; }
+  .en { color: var(--ink-2); }
+  .cat-tag { font-size: 10px; padding: 2px 7px; border-radius: 5px; background: var(--surface-2); color: var(--ink-2); white-space: nowrap; }
+  .empty-state { text-align: center; padding: 48px 20px; color: var(--ink-2); }
+
+  /* Calculators */
+  .calc-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 18px; }
+  @media (max-width: 900px) { .calc-grid { grid-template-columns: 1fr; } }
+  .field { margin-bottom: 14px; }
+  .field label { display: block; font-size: 12px; font-weight: 700; margin-bottom: 5px; color: var(--ink-2); }
+  .field input, .field select {
+    width: 100%; padding: 10px 12px; border-radius: 9px;
+    border: 1px solid var(--line); background: var(--bg); color: var(--ink);
+    outline: none;
+  }
+  .field input:focus, .field select:focus { border-color: var(--accent); background: var(--surface); }
+  .unit-row { display: grid; grid-template-columns: 1fr auto; gap: 8px; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    border: 0; border-radius: 9px; padding: 10px 16px; font-weight: 700; font-size: 13px;
+    background: var(--accent); color: #fff; transition: 0.15s;
+  }
+  .btn:hover { filter: brightness(1.07); }
+  .btn.secondary { background: var(--surface-2); color: var(--ink); border: 1px solid var(--line); }
+  .btn.small { padding: 7px 11px; font-size: 12px; }
+  .result-box {
+    background: var(--surface-2); border: 1px solid var(--line);
+    border-radius: 12px; padding: 16px; margin-top: 14px;
+  }
+  .result-row { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px dashed var(--line); font-size: 14px; }
+  .result-row:last-child { border-bottom: 0; }
+  .result-row strong { color: var(--accent); font-size: 16px; }
+  .formula-note {
+    font-family: var(--mono); font-size: 12px; background: var(--surface-2);
+    padding: 10px 12px; border-radius: 8px; margin-top: 10px; color: var(--ink-2);
+    border-left: 3px solid var(--accent-2);
+  }
+  .tab-switch { display: flex; gap: 4px; background: var(--surface-2); padding: 4px; border-radius: 10px; margin-bottom: 16px; }
+  .tab-switch button { flex: 1; border: 0; background: transparent; padding: 8px; border-radius: 7px; font-weight: 700; font-size: 12px; color: var(--ink-2); }
+  .tab-switch button.active { background: var(--surface); color: var(--accent); box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+
+  /* Handbook */
+  .accordion { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--surface); margin-bottom: 10px; }
+  .accordion summary {
+    padding: 14px 16px; font-weight: 700; cursor: pointer; list-style: none;
+    display: flex; align-items: center; gap: 10px; background: var(--surface);
+  }
+  .accordion summary::-webkit-details-marker { display: none; }
+  .accordion summary::after { content: "+"; margin-left: auto; font-size: 18px; color: var(--ink-2); }
+  .accordion[open] summary::after { content: "−"; }
+  .accordion-body { padding: 0 16px 16px; border-top: 1px solid var(--line); }
+  .checklist { list-style: none; }
+  .checklist li { display: flex; gap: 9px; padding: 6px 0; font-size: 13.5px; align-items: flex-start; }
+  .checklist li::before { content: "☐"; color: var(--accent); font-weight: 700; flex-shrink: 0; }
+  .step { display: flex; gap: 12px; margin-bottom: 12px; }
+  .step-num {
+    width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: #fff;
+    display: grid; place-items: center; font-size: 12px; font-weight: 800; flex-shrink: 0;
+  }
+  .callout {
+    border-left: 4px solid var(--accent-2); background: var(--surface-2);
+    padding: 12px 14px; border-radius: 0 8px 8px 0; font-size: 13px; margin: 12px 0;
+  }
+  .callout.danger { border-left-color: var(--danger); }
+  table.mini { width: 100%; border-collapse: collapse; font-size: 12.5px; margin: 10px 0; }
+  table.mini th, table.mini td { border: 1px solid var(--line); padding: 8px 10px; text-align: left; }
+  table.mini th { background: var(--surface-2); font-size: 11px; text-transform: uppercase; }
+
+  /* Notes */
+  .notes-layout { display: grid; grid-template-columns: 280px 1fr; gap: 18px; }
+  @media (max-width: 820px) { .notes-layout { grid-template-columns: 1fr; } }
+  .note-list { display: flex; flex-direction: column; gap: 6px; }
+  .note-item {
+    text-align: left; border: 1px solid var(--line); background: var(--surface);
+    padding: 10px 12px; border-radius: 9px; font-size: 13px;
+  }
+  .note-item.active { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, var(--surface)); }
+  .note-item strong { display: block; font-size: 13px; margin-bottom: 2px; }
+  .note-item span { font-size: 11px; color: var(--ink-2); }
+  .editor textarea {
+    width: 100%; min-height: 380px; resize: vertical;
+    border: 1px solid var(--line); border-radius: 10px; padding: 14px;
+    background: var(--surface); color: var(--ink); font-family: var(--mono); font-size: 13px; line-height: 1.6;
+    outline: none;
+  }
+  .editor textarea:focus { border-color: var(--accent); }
+  .editor-bar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 10px; }
+  .editor-bar input { flex: 1 1 200px; padding: 9px 11px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); }
+
+  /* Flashcards */
+  .flash-stage { max-width: 680px; margin: 0 auto; }
+  .flashcard {
+    perspective: 1200px; height: 320px; cursor: pointer; margin: 20px 0;
+  }
+  .flash-inner {
+    position: relative; width: 100%; height: 100%;
+    transition: transform 0.5s cubic-bezier(.4,.2,.2,1); transform-style: preserve-3d;
+  }
+  .flashcard.flipped .flash-inner { transform: rotateY(180deg); }
+  .flash-face {
+    position: absolute; inset: 0; backface-visibility: hidden;
+    border-radius: 18px; border: 1px solid var(--line);
+    background: var(--surface); box-shadow: var(--shadow);
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    padding: 28px; text-align: center;
+  }
+  .flash-face.back { transform: rotateY(180deg); background: var(--surface-2); }
+  .flash-face .term { font-size: 28px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.25; }
+  .flash-face .sub { font-size: 15px; color: var(--ink-2); margin-top: 6px; }
+  .flash-face .hint { position: absolute; bottom: 16px; font-size: 11px; color: var(--ink-2); text-transform: uppercase; letter-spacing: 0.08em; }
+  .flash-controls { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+  .flash-progress { height: 5px; background: var(--surface-2); border-radius: 99px; overflow: hidden; margin: 12px 0; }
+  .flash-progress > div { height: 100%; background: var(--accent); border-radius: 99px; transition: width 0.25s; }
+
+  .footer-note { margin-top: 32px; font-size: 11.5px; color: var(--ink-2); line-height: 1.7; }
+  .kbd { font-family: var(--mono); font-size: 11px; padding: 1px 5px; border: 1px solid var(--line); border-radius: 4px; background: var(--surface-2); }
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <div class="brand-mark">🧵</div>
+      <div>Sổ tay Bông – Sợi – Vải<small>Trilingual Textile Handbook · 棉纺手册 · Cotton–Yarn–Fabric</small></div>
+    </div>
+    <nav class="nav" id="nav">
+      <button data-view="home" class="active">Tổng quan</button>
+      <button data-view="dictionary">Từ điển 3 ngôn ngữ</button>
+      <button data-view="calculators">Tính toán</button>
+      <button data-view="handbook">Cẩm nang hiện trường</button>
+      <button data-view="notes">Ghi chú</button>
+      <button data-view="flashcards">Flashcard</button>
+    </nav>
+    <button class="theme-btn" id="themeToggle" title="Đổi giao diện">◐</button>
+  </div>
+</header>
+
+<main>
+
+<!-- ================= HOME ================= -->
+<section id="view-home" class="view active">
+  <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:16px; flex-wrap:wrap; margin-bottom:20px;">
+    <div>
+      <div class="eyebrow">Công cụ vận hành nhà máy sợi</div>
+      <h1>Từ xơ bông đến sợi chỉ,<br>một sổ tay duy nhất.</h1>
+      <p class="muted" style="max-width:620px; margin-top:8px;">
+        Từ điển thuật ngữ Việt – Trung – Anh kèm Pinyin, bộ tính chỉ số sợi và giá bông theo thông số thực tế,
+        cùng quy trình kiểm tra – xử lý khiếu nại tại nhà máy.
+      </p>
+    </div>
+    <div class="pill accent">Phiên bản 1.0 · Offline · Không framework</div>
+  </div>
+
+  <div class="grid-auto">
+    <div class="card" style="cursor:pointer" onclick="switchView('dictionary')">
+      <div class="eyebrow">Tra cứu</div>
+      <h2>Từ điển 3 ngôn ngữ</h2>
+      <p class="muted" style="margin:6px 0 14px;">Việt – Trung – Anh, kèm phiên âm Pinyin. Tìm theo bất kỳ ngôn ngữ nào.</p>
+      <span class="pill accent">Mở từ điển →</span>
+    </div>
+    <div class="card" style="cursor:pointer" onclick="switchView('calculators')">
+      <div class="eyebrow">Tính tại chỗ</div>
+      <h2>Chỉ số sợi & giá bông</h2>
+      <p class="muted" style="margin:6px 0 14px;">Quy đổi Ne / Nm / Tex / Denier, tính giá bông theo kg và chi phí sợi.</p>
+      <span class="pill accent">Mở tính toán →</span>
+    </div>
+    <div class="card" style="cursor:pointer" onclick="switchView('handbook')">
+      <div class="eyebrow">Hiện trường</div>
+      <h2>Kiểm tra & khiếu nại</h2>
+      <p class="muted" style="margin:6px 0 14px;">Checklist lấy mẫu, đánh giá ngoại quan, phân loại lỗi và quy trình xử lý khiếu nại.</p>
+      <span class="pill accent">Mở cẩm nang →</span>
+    </div>
+    <div class="card" style="cursor:pointer" onclick="switchView('flashcards')">
+      <div class="eyebrow">Học nhanh</div>
+      <h2>Flashcard từ vựng</h2>
+      <p class="muted" style="margin:6px 0 14px;">Lật thẻ để nhớ thuật ngữ theo chủ đề, có theo dõi tiến độ.</p>
+      <span class="pill accent">Mở flashcard →</span>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:18px;">
+    <h2>Nguyên tắc dùng nhanh</h2>
+    <div class="grid-3" style="margin-top:12px;">
+      <div>
+        <h3>1 · Xác định đúng chỉ số</h3>
+        <p class="muted">Ne (Anh) và Nm (metric) là hệ gián tiếp: số càng lớn sợi càng mảnh. Tex và Denier là hệ trực tiếp: số càng lớn sợi càng thô. Không so sánh trị số giữa hai hệ mà chưa quy đổi.</p>
+      </div>
+      <div>
+        <h3>2 · Chất lượng bông = nền sợi</h3>
+        <p class="muted">Micronaire, chiều dài, độ bền và độ đều là bốn trục chính. Micronaire thấp có thể đi kèm bông chưa chín, neps cao; micronaire quá cao thường đi với sợi thô hơn.</p>
+      </div>
+      <div>
+        <h3>3 · Khiếu nại phải có bằng chứng</h3>
+        <p class="muted">Mẫu đối chứng, số lô, vị trí cuộn/ống, điều kiện thử và tiêu chuẩn viện dẫn là bắt buộc. Không nhận khiếu nại chỉ bằng hình ảnh không có mẫu.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DICTIONARY ================= -->
+<section id="view-dictionary" class="view">
+  <div class="eyebrow">Tra cứu thuật ngữ</div>
+  <h1>Từ điển Bông – Sợi – Vải</h1>
+  <p class="muted">Việt · Trung (giản thể) · Pinyin · Anh. Gõ tiếng Việt có dấu hoặc không dấu, chữ Hán hoặc tiếng Anh.</p>
+
+  <div class="toolbar">
+    <div class="search-wrap">
+      <input id="dictSearch" type="search" placeholder="Ví dụ: xơ bông, 棉, micronaire, sợi combed…" autocomplete="off">
+    </div>
+    <div class="chipbar" id="dictChips">
+      <button class="chip active" data-cat="all">Tất cả</button>
+      <button class="chip" data-cat="fiber">Xơ / Bông</button>
+      <button class="chip" data-cat="yarn">Sợi</button>
+      <button class="chip" data-cat="fabric">Vải</button>
+      <button class="chip" data-cat="process">Công đoạn</button>
+      <button class="chip" data-cat="quality">Chất lượng / Lỗi</button>
+    </div>
+  </div>
+
+  <div class="card" style="padding:0; overflow:auto; max-height:72vh;">
+    <table class="dict-table">
+      <thead>
+        <tr>
+          <th style="width:26%">Tiếng Việt</th>
+          <th style="width:20%">Tiếng Trung</th>
+          <th style="width:18%">Pinyin</th>
+          <th style="width:26%">English</th>
+          <th style="width:10%">Nhóm</th>
+        </tr>
+      </thead>
+      <tbody id="dictBody"></tbody>
+    </table>
+    <div id="dictEmpty" class="empty-state hidden">Không tìm thấy thuật ngữ phù hợp. Thử từ khóa ngắn hơn.</div>
+  </div>
+  <p class="footer-note">Ghi chú: Pinyin dùng dấu thanh chuẩn. Một số thuật ngữ có biến thể vùng miền; ưu tiên cách gọi phổ biến trong nhà máy sợi.</p>
+</section>
+
+<!-- ================= CALCULATORS ================= -->
+<section id="view-calculators" class="view">
+  <div class="eyebrow">Tính toán tại nhà máy</div>
+  <h1>Chỉ số sợi & giá bông</h1>
+  <p class="muted">Nhập thông số thực tế. Kết quả quy đổi làm tròn 3 chữ số thập phân; giá trị tiền tệ làm tròn 2 chữ số.</p>
+
+  <div class="tab-switch" id="calcTabs">
+    <button class="active" data-tab="count">Quy đổi chỉ số sợi</button>
+    <button data-tab="price">Giá bông & chi phí sợi</button>
+  </div>
+
+  <!-- Count converter -->
+  <div id="calc-count">
+    <div class="calc-grid">
+      <div class="card">
+        <h2>Quy đổi Ne · Nm · Tex · Denier</h2>
+        <p class="muted" style="margin-bottom:14px;">Nhập một giá trị và chọn đơn vị gốc. Hệ quy đổi dùng hằng số chuẩn: Tex = 590,5 / Ne; Denier = 5315 / Ne; Tex = 1000 / Nm.</p>
+        <div class="unit-row">
+          <div class="field">
+            <label>Giá trị gốc</label>
+            <input id="countValue" type="number" min="0" step="any" value="30" placeholder="Nhập số">
+          </div>
+          <div class="field" style="min-width:110px;">
+            <label>Đơn vị</label>
+            <select id="countUnit">
+              <option value="Ne">Ne (Anh)</option>
+              <option value="Nm">Nm (Metric)</option>
+              <option value="Tex">Tex</option>
+              <option value="Denier">Denier</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn" id="btnConvert">Quy đổi</button>
+        <div class="formula-note">
+          Ne = L(yd) / (840 × W(lb)) &nbsp;·&nbsp; Nm = L(m) / W(g) &nbsp;·&nbsp; Tex = 1000 × W(g) / L(m)<br>
+          Denier = 9000 × W(g) / L(m) &nbsp;·&nbsp; 1 Tex = 9 Denier &nbsp;·&nbsp; Ne ≈ 0,583 Nm (bông thuần)
+        </div>
+      </div>
+      <div class="card">
+        <h2>Kết quả</h2>
+        <div class="result-box" id="countResult">
+          <div class="result-row"><span>Ne (English cotton count)</span><strong id="rNe">—</strong></div>
+          <div class="result-row"><span>Nm (Metric count)</span><strong id="rNm">—</strong></div>
+          <div class="result-row"><span>Tex (g/1000 m)</span><strong id="rTex">—</strong></div>
+          <div class="result-row"><span>Denier (g/9000 m)</span><strong id="rDen">—</strong></div>
+          <div class="result-row"><span>dTex (g/10000 m)</span><strong id="rDtex">—</strong></div>
+        </div>
+        <p class="muted" style="margin-top:10px;">Kiểm tra chéo: nếu Ne tăng thì Tex và Denier phải giảm (sợi mảnh hơn).</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px;">
+      <h2>Bảng tham chiếu nhanh</h2>
+      <table class="mini">
+        <thead><tr><th>Ne</th><th>Nm (xấp xỉ)</th><th>Tex</th><th>Denier</th><th>Ứng dụng thường gặp</th></tr></thead>
+        <tbody>
+          <tr><td>20</td><td>34,3</td><td>29,5</td><td>265,8</td><td>Sợi thô, vải bền, dây may mặc nặng</td></tr>
+          <tr><td>30</td><td>51,5</td><td>19,7</td><td>177,2</td><td>Sợi dệt phổ thông, vải mộc</td></tr>
+          <tr><td>40</td><td>68,6</td><td>14,8</td><td>132,9</td><td>Sợi mảnh trung bình, áo sơ mi</td></tr>
+          <tr><td>60</td><td>102,9</td><td>9,8</td><td>88,6</td><td>Sợi mảnh, vải mềm, đồ lót</td></tr>
+          <tr><td>80</td><td>137,2</td><td>7,4</td><td>66,4</td><td>Sợi rất mảnh, vải cao cấp</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Price calculator -->
+  <div id="calc-price" class="hidden">
+    <div class="calc-grid">
+      <div class="card">
+        <h2>Tính giá bông & chi phí sợi theo kg</h2>
+        <p class="muted" style="margin-bottom:14px;">Mô hình đơn giản: giá bông đầu vào + hao hụt + chi phí chế biến = giá thành sợi ước tính.</p>
+
+        <div class="field">
+          <label>Giá bông nguyên liệu (USD/kg)</label>
+          <input id="cottonPrice" type="number" min="0" step="0.01" value="2.05">
+        </div>
+        <div class="field">
+          <label>Hao hụt / waste (%)</label>
+          <input id="wastePct" type="number" min="0" max="60" step="0.1" value="8">
+        </div>
+        <div class="field">
+          <label>Chi phí chế biến (USD/kg sợi)</label>
+          <input id="processCost" type="number" min="0" step="0.01" value="0.85">
+        </div>
+        <div class="field">
+          <label>Lợi nhuận mong muốn (%)</label>
+          <input id="marginPct" type="number" min="0" step="0.1" value="10">
+        </div>
+        <button class="btn" id="btnPrice">Tính giá thành</button>
+      </div>
+      <div class="card">
+        <h2>Kết quả ước tính</h2>
+        <div class="result-box">
+          <div class="result-row"><span>Bông cần cho 1 kg sợi (đã tính hao hụt)</span><strong id="pCottonNeed">—</strong></div>
+          <div class="result-row"><span>Chi phí bông / kg sợi</span><strong id="pCottonCost">—</strong></div>
+          <div class="result-row"><span>Tổng chi phí trước lợi nhuận</span><strong id="pTotalCost">—</strong></div>
+          <div class="result-row"><span>Giá bán tối thiểu / kg sợi</span><strong id="pSellPrice">—</strong></div>
+        </div>
+        <div class="callout">
+          Đây là mô hình “thumb rule” để trao đổi nhanh tại xưởng. Giá thực tế còn phụ thuộc chất lượng bông, chỉ số sợi, tỷ lệ pha trộn, năng lượng và tỷ giá.
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px;">
+      <h2>Công thức đang dùng</h2>
+      <div class="formula-note">
+        Lượng bông cần = 1 / (1 − hao hụt)<br>
+        Chi phí bông = Lượng bông cần × giá bông<br>
+        Tổng chi phí = Chi phí bông + chi phí chế biến<br>
+        Giá bán tối thiểu = Tổng chi phí / (1 − tỷ lệ lợi nhuận)
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HANDBOOK ================= -->
+<section id="view-handbook" class="view">
+  <div class="eyebrow">Cẩm nang hiện trường</div>
+  <h1>Kiểm tra & xử lý khiếu nại</h1>
+  <p class="muted">Quy trình rút gọn cho cán bộ KCS / QA tại nhà máy sợi và xưởng dệt. Có thể in ra hoặc dùng trực tiếp trên điện thoại.</p>
+
+  <div style="margin-top:16px;">
+    <details class="accordion" open>
+      <summary>📋 1. Checklist lấy mẫu sợi trước khi gửi thử nghiệm</summary>
+      <div class="accordion-body">
+        <ul class="checklist">
+          <li>Đối chiếu danh mục thông số với đơn đặt hàng, không dùng mẫu chung.</li>
+          <li>Lấy ống/búp ngẫu nhiên trên nhiều vị trí trong lô; ghi rõ số lô, cọc sợi, vị trí quấn.</li>
+          <li>Bỏ lớp ngoài của mỗi ống, cắt mẫu đủ dài theo yêu cầu phòng thí nghiệm.</li>
+          <li>Mỗi mẫu tối thiểu 3 ống đại diện; với lô lớn tăng lên 5–8 ống.</li>
+          <li>Dán nhãn: mã lô, chỉ số danh định, ngày sản xuất, ca, máy, người lấy mẫu.</li>
+          <li>Bảo quản mẫu trong túi kín, tránh ẩm và nắng trực tiếp trước khi thử.</li>
+          <li>Với sợi có pha trộn, ghi rõ tỷ lệ thành phần và phương pháp trộn.</li>
+        </ul>
+        <div class="callout">Mẫu không đại diện là nguyên nhân phổ biến nhất khiến kết quả thử nghiệm không phản ánh đúng lô hàng.</div>
+      </div>
+    </details>
+
+    <details class="accordion">
+      <summary>🔍 2. Kiểm tra ngoại quan và thông số cơ lý chính</summary>
+      <div class="accordion-body">
+        <table class="mini">
+          <thead><tr><th>Hạng mục</th><th>Dụng cụ / phương pháp</th><th>Ghi chú hiện trường</th></tr></thead>
+          <tbody>
+            <tr><td>Chỉ số sợi (Ne/Nm/Tex)</td><td>Cân + chiều dài chuẩn, hoặc máy thử tự động</td><td>Thử ít nhất 3 mẫu, sai lệch &gt;2% so với danh định cần kiểm tra lại</td></tr>
+            <tr><td>Độ đều CVm%</td><td>Uster Tester (hoặc thiết bị tương đương)</td><td>CVm càng thấp càng đều; so với USTER_STAT theo chỉ số</td></tr>
+            <tr><td>IPI (thin/thick/neps)</td><td>Uster Tester</td><td>IPI là tổng điểm thường gặp trên 1000 m; cần tách riêng từng loại</td></tr>
+            <tr><td>Độ bền & giãn</td><td>Máy kéo sợi (Tensorapid / Statimat)</td><td>Ghi rõ khoảng cách kẹp, tốc độ kéo, số mẫu</td></tr>
+            <tr><td>Độ xù lông (hairiness)</td><td>Uster Hairiness hoặc phương pháp đếm</td><td>Ảnh hưởng trực tiếp đến dệt và bề mặt vải</td></tr>
+            <tr><td>Ngoại quan</td><td>Quan sát dưới đèn chuẩn, nền tương phản</td><td>Tìm dị vật, dầu, xơ vón, đốm màu, ống lỗi</td></tr>
+          </tbody>
+        </table>
+        <div class="callout">Với sợi cotton, micronaire của xơ đầu vào ảnh hưởng mạnh đến độ đều và độ bền sợi. Nếu sợi có neps cao bất thường, kiểm tra lại nguyên liệu và thiết bị chải.</div>
+      </div>
+    </details>
+
+    <details class="accordion">
+      <summary>🧾 3. Phân loại lỗi sợi – vải thường gặp</summary>
+      <div class="accordion-body">
+        <div class="grid-2">
+          <div>
+            <h3>Lỗi sợi</h3>
+            <ul class="checklist">
+              <li>Độ đều kém, CVm cao, nhiều đoạn mảnh / dày bất thường.</li>
+              <li>Neps, xơ vón, hạt vỏ (seed-coat fragments).</li>
+              <li>Dị vật: sợi nhựa, dây bao, mảnh vải, dầu mỡ.</li>
+              <li>Độ bền thấp, đứt nhiều trong dệt hoặc cuộn.</li>
+              <li>Sai chỉ số so với đơn hàng.</li>
+              <li>Màu không đồng nhất giữa các ống / lô.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Lỗi vải liên quan sợi</h3>
+            <ul class="checklist">
+              <li>Dọc / ngang không đều, vệt sáng tối.</li>
+              <li>Điểm dày, điểm mỏng, lỗ kim.</li>
+              <li>Neps trắng hoặc đốm xơ trên mặt vải.</li>
+              <li>Vải bị rão, co rút khác thường sau giặt.</li>
+              <li>Đứt sợi dọc / ngang trong quá trình dệt.</li>
+              <li>Loang màu hoặc sai màu do sợi nhuộm không đều.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="callout danger">Khi phát hiện dị vật cứng (kim, mảnh kim loại, nhựa cứng), phải dừng máy và kiểm tra toàn bộ lô liên quan trước khi tiếp tục sản xuất.</div>
+      </div>
+    </details>
+
+    <details class="accordion">
+      <summary>⚖️ 4. Quy trình xử lý khiếu nại chất lượng (8 bước)</summary>
+      <div class="accordion-body">
+        <div class="step"><div class="step-num">1</div><div><strong>Tiếp nhận và xác nhận khiếu nại.</strong> Ghi nhận thông tin: mã đơn hàng, mã vải / sợi, số lô, số cuộn / ống, ngày giao, mô tả lỗi, hình ảnh.</div></div>
+        <div class="step"><div class="step-num">2</div><div><strong>Yêu cầu mẫu đối chứng.</strong> Không xử lý khiếu nại chỉ dựa trên ảnh. Yêu cầu mẫu lỗi và mẫu hàng tốt cùng lô nếu có.</div></div>
+        <div class="step"><div class="step-num">3</div><div><strong>Kiểm tra điều kiện bảo quản và sử dụng.</strong> Loại trừ nguyên nhân do ẩm, nắng, kho bãi hoặc thiết bị dệt của khách.</div></div>
+        <div class="step"><div class="step-num">4</div><div><strong>Thử nghiệm lại theo tiêu chuẩn viện dẫn.</strong> Ví dụ: ASTM D1425 (độ đều), ISO 2060 (chỉ số), ASTM D5430 (ngoại quan vải).</div></div>
+        <div class="step"><div class="step-num">5</div><div><strong>Phân tích nguyên nhân gốc (RCA).</strong> Dùng 5-Why hoặc sơ đồ xương cá; xác định lỗi thuộc nguyên liệu, công đoạn kéo sợi, dệt hay xử lý sau dệt.</div></div>
+        <div class="step"><div class="step-num">6</div><div><strong>Đề xuất hành động khắc phục (CAPA).</strong> Sửa lô hiện tại, điều chỉnh thông số máy, thay nguyên liệu, hoặc đào tạo lại công nhân.</div></div>
+        <div class="step"><div class="step-num">7</div><div><strong>Phản hồi khách hàng bằng văn bản.</strong> Nêu rõ kết luận, bằng chứng, biện pháp và thời hạn. Không hứa bằng miệng.</div></div>
+        <div class="step"><div class="step-num">8</div><div><strong>Theo dõi và đóng khiếu nại.</strong> Xác nhận khách đã chấp nhận; lưu hồ sơ tối thiểu 2 năm để đối chiếu.</div></div>
+        <div class="callout">Thời gian phản hồi nội bộ nên ≤ 72 giờ; thời gian đóng khiếu nại điển hình 3–6 tuần tùy mức độ phức tạp.</div>
+      </div>
+    </details>
+
+    <details class="accordion">
+      <summary>📐 5. Hệ thống 4 điểm kiểm tra ngoại quan vải (4-Point System)</summary>
+      <div class="accordion-body">
+        <p class="muted">Áp dụng phổ biến theo ASTM D5430. Mỗi mét dài (hoặc yard) được cho điểm theo chiều dài lỗi; tổng điểm trên 100 m² hoặc 100 yard² dùng để phân loại lô.</p>
+        <table class="mini">
+          <thead><tr><th>Chiều dài lỗi</th><th>Điểm</th></tr></thead>
+          <tbody>
+            <tr><td>≤ 75 mm (≤ 3 inch)</td><td>1</td></tr>
+            <tr><td>&gt; 75 mm đến ≤ 150 mm (&gt;3–6 inch)</td><td>2</td></tr>
+            <tr><td>&gt; 150 mm đến ≤ 230 mm (&gt;6–9 inch)</td><td>3</td></tr>
+            <tr><td>&gt; 230 mm (&gt;9 inch)</td><td>4</td></tr>
+          </tbody>
+        </table>
+        <div class="callout">Lỗi trên cùng một mét không cộng dồn quá 4 điểm. Vải lỗi nặng (lỗ thủng, rách, dị vật cứng) thường bị loại riêng, không chỉ tính điểm.</div>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ================= NOTES ================= -->
+<section id="view-notes" class="view">
+  <div class="eyebrow">Sổ tay cá nhân</div>
+  <h1>Ghi chú</h1>
+  <p class="muted">Dữ liệu lưu trên trình duyệt của bạn (localStorage). Không gửi lên máy chủ. Có thể tạo nhiều ghi chú theo ca / lô / khách hàng.</p>
+
+  <div class="notes-layout" style="margin-top:16px;">
+    <div>
+      <button class="btn" id="newNoteBtn" style="width:100%; margin-bottom:10px;">+ Ghi chú mới</button>
+      <div class="note-list" id="noteList"></div>
+    </div>
+    <div class="card editor">
+      <div class="editor-bar">
+        <input id="noteTitle" placeholder="Tiêu đề ghi chú…" maxlength="120">
+        <button class="btn small" id="saveNoteBtn">Lưu</button>
+        <button class="btn small secondary" id="deleteNoteBtn">Xóa</button>
+      </div>
+      <textarea id="noteContent" placeholder="Nội dung ghi chú…&#10;Ví dụ:&#10;- Lô 24B: Ne 30, CVm 11.8%, IPI 42&#10;- Khách báo lỗi dọc thưa ở cuộn 12–14&#10;- Đã yêu cầu mẫu đối chứng"></textarea>
+      <p class="muted" id="noteStatus" style="margin-top:8px;">Chưa có thay đổi.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FLASHCARDS ================= -->
+<section id="view-flashcards" class="view">
+  <div class="eyebrow">Học từ vựng</div>
+  <h1>Flashcard</h1>
+  <p class="muted">Lật thẻ để xem nghĩa. Dùng nút “Thuộc” / “Chưa thuộc” để theo dõi tiến độ trong phiên.</p>
+
+  <div class="flash-stage">
+    <div class="toolbar" style="justify-content:space-between;">
+      <div class="chipbar" id="flashChips">
+        <button class="chip active" data-fcat="all">Tất cả</button>
+        <button class="chip" data-fcat="fiber">Xơ / Bông</button>
+        <button class="chip" data-fcat="yarn">Sợi</button>
+        <button class="chip" data-fcat="quality">Chất lượng</button>
+      </div>
+      <span class="pill" id="flashCounter">0 / 0</span>
+    </div>
+    <div class="flash-progress"><div id="flashBar" style="width:0%"></div></div>
+
+    <div class="flashcard" id="flashcard">
+      <div class="flash-inner">
+        <div class="flash-face front">
+          <div class="term" id="flashTerm">—</div>
+          <div class="sub" id="flashSub"></div>
+          <div class="hint">Nhấn để lật thẻ</div>
+        </div>
+        <div class="flash-face back">
+          <div class="term" id="flashBackTerm" style="font-size:22px;">—</div>
+          <div class="sub" id="flashBackSub" style="margin-top:10px;"></div>
+          <div class="hint">Nhấn để lật lại</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flash-controls">
+      <button class="btn secondary" id="flashPrev">← Trước</button>
+      <button class="btn secondary" id="flashShuffle">🔀 Xáo trộn</button>
+      <button class="btn secondary" id="flashKnown">✓ Thuộc</button>
+      <button class="btn secondary" id="flashUnknown">✗ Chưa thuộc</button>
+      <button class="btn" id="flashNext">Sau →</button>
+    </div>
+  </div>
+</section>
+
+<p class="footer-note">
+  <strong>Miễn trừ:</strong> Các công thức và checklist mang tính hướng dẫn vận hành. Khi thử nghiệm chính thức hoặc tranh chấp hợp đồng, luôn viện dẫn tiêu chuẩn cụ thể (ASTM, ISO, TCVN, GB/T…) và điều kiện thử đã thỏa thuận. Dữ liệu từ điển được tổng hợp từ tài liệu chuyên ngành và có thể có biến thể thuật ngữ theo vùng.
+</p>
+
+</main>
+
+<script>
+/* ============================================================
+   DATA: TRILINGUAL GLOSSARY
+   ============================================================ */
+const GLOSSARY = [
+  // FIBER / COTTON
+  {vi:"Xơ bông", zh:"棉纤维", py:"mián xiānwéi", en:"Cotton fibre", cat:"fiber"},
+  {vi:"Bông thô", zh:"原棉", py:"yuánmián", en:"Raw cotton / Lint", cat:"fiber"},
+  {vi:"Bông hạt", zh:"籽棉", py:"zǐmián", en:"Seed cotton", cat:"fiber"},
+  {vi:"Xơ bông chín", zh:"成熟棉纤维", py:"chéngshú mián xiānwéi", en:"Mature cotton fibre", cat:"fiber"},
+  {vi:"Bông chưa chín", zh:"未成熟棉", py:"wèi chéngshú mián", en:"Immature cotton", cat:"fiber"},
+  {vi:"Micronaire", zh:"马克隆值", py:"mǎkèlóng zhí", en:"Micronaire (Mic)", cat:"fiber"},
+  {vi:"Chiều dài xơ (staple)", zh:"纤维长度", py:"xiānwéi chángdù", en:"Staple length", cat:"fiber"},
+  {vi:"Độ đều chiều dài", zh:"长度整齐度", py:"chángdù zhěngqídù", en:"Length uniformity", cat:"fiber"},
+  {vi:"Độ bền xơ", zh:"纤维强度", py:"xiānwéi qiángdù", en:"Fibre strength", cat:"fiber"},
+  {vi:"Độ giãn xơ", zh:"纤维伸长率", py:"xiānwéi shēncháng lǜ", en:"Fibre elongation", cat:"fiber"},
+  {vi:"Tạp chất trong bông", zh:"原棉杂质", py:"yuánmián zázhì", en:"Cotton trash / non-lint", cat:"fiber"},
+  {vi:"Hạt vỏ (seed-coat fragment)", zh:"棉籽壳碎片", py:"miánzǐ ké suìpiàn", en:"Seed-coat fragment", cat:"quality"},
+  {vi:"Neps (xơ vón)", zh:"棉结", py:"miánjié", en:"Neps", cat:"quality"},
+  {vi:"Bông dính (stickiness)", zh:"粘性棉", py:"zhān xìng mián", en:"Sticky cotton", cat:"quality"},
+  {vi:"Dị vật trong bông", zh:"棉花异物", py:"miánhuā yìwù", en:"Cotton contamination", cat:"quality"},
+
+  // YARN
+  {vi:"Sợi", zh:"纱线", py:"shāxiàn", en:"Yarn", cat:"yarn"},
+  {vi:"Sợi đơn", zh:"单纱", py:"dān shā", en:"Single yarn", cat:"yarn"},
+  {vi:"Sợi xe / sợi se", zh:"股线", py:"gǔ xiàn", en:"Plied yarn / Folded yarn", cat:"yarn"},
+  {vi:"Sợi combed (chải kỹ)", zh:"精梳纱", py:"jīngshū shā", en:"Combed yarn", cat:"yarn"},
+  {vi:"Sợi carded (chải thô)", zh:"普梳纱 / 粗梳纱", py:"pǔshū shā / cūshū shā", en:"Carded yarn", cat:"yarn"},
+  {vi:"Sợi open-end (OE)", zh:"气流纺纱", py:"qìliú fǎngshā", en:"Open-end yarn / Rotor yarn", cat:"yarn"},
+  {vi:"Sợi ring-spun", zh:"环锭纺纱", py:"huándìng fǎngshā", en:"Ring-spun yarn", cat:"yarn"},
+  {vi:"Chỉ số sợi Ne", zh:"英制支数", py:"yīngzhì zhīshù", en:"English cotton count (Ne)", cat:"yarn"},
+  {vi:"Chỉ số sợi Nm", zh:"公制支数", py:"gōngzhì zhīshù", en:"Metric count (Nm)", cat:"yarn"},
+  {vi:"Tex (特数)", zh:"特克斯", py:"tèkèsī", en:"Tex", cat:"yarn"},
+  {vi:"Denier (旦数)", zh:"旦尼尔", py:"dànní'ěr", en:"Denier", cat:"yarn"},
+  {vi:"dTex (分特)", zh:"分特克斯", py:"fēn tèkèsī", en:"Decitex (dtex)", cat:"yarn"},
+  {vi:"Độ đều sợi CVm%", zh:"条干不匀率", py:"tiáogàn bùyún lǜ", en:"Yarn evenness CVm%", cat:"quality"},
+  {vi:"IPI (chỉ số điểm xấu)", zh:"常发性疵点指数", py:"chángfāxìng cīdiǎn zhǐshù", en:"Imperfection index (IPI)", cat:"quality"},
+  {vi:"Độ xù lông sợi", zh:"毛羽", py:"máoyǔ", en:"Hairiness", cat:"quality"},
+  {vi:"Độ bền sợi", zh:"纱线强度", py:"shāxiàn qiángdù", en:"Yarn strength / Tenacity", cat:"quality"},
+  {vi:"Độ giãn sợi", zh:"纱线伸长率", py:"shāxiàn shēncháng lǜ", en:"Yarn elongation", cat:"quality"},
+  {vi:"Xoắn sợi (TPM/TPI)", zh:"捻度", py:"niǎndù", en:"Twist (TPM/TPI)", cat:"yarn"},
+  {vi:"Xoắn Z", zh:"Z捻", py:"Z niǎn", en:"Z-twist", cat:"yarn"},
+  {vi:"Xoắn S", zh:"S捻", py:"S niǎn", en:"S-twist", cat:"yarn"},
+  {vi:"Đứt sợi", zh:"断头", py:"duàntóu", en:"Yarn breakage / End break", cat:"quality"},
+  {vi:"Mối nối sợi", zh:"接头", py:"jiētóu", en:"Splice / Knot", cat:"yarn"},
+  {vi:"Sợi pha", zh:"混纺纱", py:"hùnfǎng shā", en:"Blended yarn", cat:"yarn"},
+  {vi:"Sợi T/C", zh:"涤棉纱", py:"dí mián shā", en:"Polyester/Cotton yarn (T/C)", cat:"yarn"},
+  {vi:"Sợi CVC", zh:" chief value cotton 纱", py:"chief value cotton shā", en:"Chief Value Cotton yarn (CVC)", cat:"yarn"},
+  {vi:"Sợi bông 100%", zh:"纯棉纱", py:"chún mián shā", en:"100% cotton yarn", cat:"yarn"},
+
+  // FABRIC
+  {vi:"Vải dệt thoi", zh:"机织物", py:"jīzhīwù", en:"Woven fabric", cat:"fabric"},
+  {vi:"Vải dệt kim", zh:"针织物", py:"zhēnzhīwù", en:"Knitted fabric", cat:"fabric"},
+  {vi:"Vải dệt trơn", zh:"平纹布", py:"píngwén bù", en:"Plain weave fabric", cat:"fabric"},
+  {vi:"Vải chéo", zh:"斜纹布", py:"xiéwén bù", en:"Twill fabric", cat:"fabric"},
+  {vi:"Vải satin", zh:"缎纹布", py:"duànwén bù", en:"Satin fabric", cat:"fabric"},
+  {vi:"Vải denim", zh:"牛仔布", py:"niúzǎi bù", en:"Denim", cat:"fabric"},
+  {vi:"Vải kaki", zh:"卡其布", py:"kǎqí bù", en:"Khaki fabric", cat:"fabric"},
+  {vi:"Vải poplin", zh:"府绸", py:"fǔchóu", en:"Poplin", cat:"fabric"},
+  {vi:"Vải cotton", zh:"棉布", py:"miánbù", en:"Cotton fabric", cat:"fabric"},
+  {vi:"Vải pha", zh:"混纺布", py:"hùnfǎng bù", en:"Blended fabric", cat:"fabric"},
+  {vi:"Vải lỗi", zh:"疵布", py:"cī bù", en:"Defective fabric / Second fabric", cat:"quality"},
+  {vi:"Điểm dày (thick place)", zh:"粗节", py:"cūjié", en:"Thick place", cat:"quality"},
+  {vi:"Điểm mỏng (thin place)", zh:"细节", py:"xìjié", en:"Thin place", cat:"quality"},
+  {vi:"Lỗ thủng", zh:"破洞", py:"pòdòng", en:"Hole", cat:"quality"},
+  {vi:"Dị vật trên vải", zh:"织物异物", py:"zhīwù yìwù", en:"Foreign matter on fabric", cat:"quality"},
+
+  // PROCESS
+  {vi:"Chải thô (carding)", zh:"粗梳 / 梳理", py:"cūshū / shūlǐ", en:"Carding", cat:"process"},
+  {vi:"Chải kỹ (combing)", zh:"精梳", py:"jīngshū", en:"Combing", cat:"process"},
+  {vi:"Kéo sợi (spinning)", zh:"纺纱", py:"fǎngshā", en:"Spinning", cat:"process"},
+  {vi:"Ghép (drawing)", zh:"并条", py:"bìngtiáo", en:"Drawing", cat:"process"},
+  {vi:"Xe sợi (roving)", zh:"粗纱", py:"cūshā", en:"Roving", cat:"process"},
+  {vi:"Dệt (weaving)", zh:"织造", py:"zhīzào", en:"Weaving", cat:"process"},
+  {vi:"Dệt kim (knitting)", zh:"针织", py:"zhēnzhī", en:"Knitting", cat:"process"},
+  {vi:"Nhuộm", zh:"染色", py:"rǎnsè", en:"Dyeing", cat:"process"},
+  {vi:"Hoàn tất", zh:"后整理", py:"hòu zhěnglǐ", en:"Finishing", cat:"process"},
+  {vi:"Hao hụt (waste)", zh:"损耗 / 回花", py:"sǔnhào / huíhuā", en:"Waste / Loss", cat:"process"},
+
+  // QUALITY / STANDARDS
+  {vi:"Kiểm tra chất lượng", zh:"质量检验", py:"zhìliàng jiǎnyàn", en:"Quality inspection", cat:"quality"},
+  {vi:"Khiếu nại", zh:"质量投诉 / 索赔", py:"zhìliàng tóusù / suǒpéi", en:"Complaint / Claim", cat:"quality"},
+  {vi:"Mẫu đối chứng", zh:"对照样品", py:"duìzhào yàngpǐn", en:"Reference sample / Control sample", cat:"quality"},
+  {vi:"Nguyên nhân gốc (RCA)", zh:"根本原因分析", py:"gēnběn yuányīn fēnxī", en:"Root cause analysis (RCA)", cat:"quality"},
+  {vi:"Hành động khắc phục (CAPA)", zh:"纠正预防措施", py:"jiūzhèng yùfáng cuòshī", en:"Corrective and preventive action (CAPA)", cat:"quality"},
+  {vi:"Hệ thống 4 điểm", zh:"四分制", py:"sì fēn zhì", en:"4-Point System", cat:"quality"},
+  {vi:"Uster CVm", zh:"乌斯特条干CVm", py:"wūsītè tiáogàn CVm", en:"Uster CVm", cat:"quality"},
+  {vi:"Chỉ số chất lượng sợi", zh:"纱线质量指数", py:"shāxiàn zhìliàng zhǐshù", en:"Yarn quality index", cat:"quality"}
+];
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+function switchView(name) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  const target = document.getElementById('view-' + name);
+  if (target) target.classList.add('active');
+  document.querySelectorAll('#nav button').forEach(b => {
+    b.classList.toggle('active', b.dataset.view === name);
+  });
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+document.getElementById('nav').addEventListener('click', e => {
+  const btn = e.target.closest('button[data-view]');
+  if (btn) switchView(btn.dataset.view);
+});
+
+/* ============================================================
+   THEME
+   ============================================================ */
+const themeToggle = document.getElementById('themeToggle');
+function applyTheme(dark) {
+  document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+  themeToggle.textContent = dark ? '☀' : '◐';
+  localStorage.setItem('textile-theme', dark ? 'dark' : 'light');
+}
+themeToggle.addEventListener('click', () => {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  applyTheme(!isDark);
+});
+applyTheme(localStorage.getItem('textile-theme') === 'dark');
+
+/* ============================================================
+   DICTIONARY
+   ============================================================ */
+const dictBody = document.getElementById('dictBody');
+const dictSearch = document.getElementById('dictSearch');
+const dictEmpty = document.getElementById('dictEmpty');
+let dictCat = 'all';
+
+function normalize(s) {
+  return (s || '').toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/đ/g, 'd');
+}
+
+function renderDictionary() {
+  const q = normalize(dictSearch.value.trim());
+  const rows = GLOSSARY.filter(item => {
+    const inCat = dictCat === 'all' || item.cat === dictCat;
+    if (!inCat) return false;
+    if (!q) return true;
+    const hay = normalize([item.vi, item.zh, item.py, item.en].join(' '));
+    return hay.includes(q);
+  });
+  dictBody.innerHTML = rows.map(item => `
+    <tr>
+      <td class="vi">${escapeHtml(item.vi)}</td>
+      <td class="zh">${escapeHtml(item.zh)}</td>
+      <td class="py">${escapeHtml(item.py)}</td>
+      <td class="en">${escapeHtml(item.en)}</td>
+      <td><span class="cat-tag">${catLabel(item.cat)}</span></td>
+    </tr>
+  `).join('');
+  dictEmpty.classList.toggle('hidden', rows.length > 0);
+}
+function catLabel(cat) {
+  return {fiber:'Xơ', yarn:'Sợi', fabric:'Vải', process:'Công đoạn', quality:'Chất lượng'}[cat] || cat;
+}
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+dictSearch.addEventListener('input', renderDictionary);
+document.getElementById('dictChips').addEventListener('click', e => {
+  const btn = e.target.closest('.chip');
+  if (!btn) return;
+  dictCat = btn.dataset.cat;
+  document.querySelectorAll('#dictChips .chip').forEach(c => c.classList.toggle('active', c === btn));
+  renderDictionary();
+});
+renderDictionary();
+
+/* ============================================================
+   CALCULATORS
+   ============================================================ */
+// Tabs
+document.getElementById('calcTabs').addEventListener('click', e => {
+  const btn = e.target.closest('button[data-tab]');
+  if (!btn) return;
+  document.querySelectorAll('#calcTabs button').forEach(b => b.classList.toggle('active', b === btn));
+  document.getElementById('calc-count').classList.toggle('hidden', btn.dataset.tab !== 'count');
+  document.getElementById('calc-price').classList.toggle('hidden', btn.dataset.tab !== 'price');
+});
+
+// Count converter
+function fmt(n, digits = 3) {
+  if (!isFinite(n) || n <= 0) return '—';
+  return Number(n).toFixed(digits).replace(/\.?0+$/, '') || '0';
+}
+function convertCount() {
+  const val = parseFloat(document.getElementById('countValue').value);
+  const unit = document.getElementById('countUnit').value;
+  if (!isFinite(val) || val <= 0) {
+    ['rNe','rNm','rTex','rDen','rDtex'].forEach(id => document.getElementById(id).textContent = '—');
+    return;
+  }
+  let tex;
+  switch(unit) {
+    case 'Ne': tex = 590.5 / val; break;
+    case 'Nm': tex = 1000 / val; break;
+    case 'Tex': tex = val; break;
+    case 'Denier': tex = val / 9; break;
+  }
+  const ne = 590.5 / tex;
+  const nm = 1000 / tex;
+  const den = tex * 9;
+  const dtex = tex * 10;
+  document.getElementById('rNe').textContent = fmt(ne);
+  document.getElementById('rNm').textContent = fmt(nm);
+  document.getElementById('rTex').textContent = fmt(tex);
+  document.getElementById('rDen').textContent = fmt(den);
+  document.getElementById('rDtex').textContent = fmt(dtex);
+}
+document.getElementById('btnConvert').addEventListener('click', convertCount);
+document.getElementById('countValue').addEventListener('input', convertCount);
+document.getElementById('countUnit').addEventListener('change', convertCount);
+convertCount();
+
+// Price calculator
+function calcPrice() {
+  const cp = parseFloat(document.getElementById('cottonPrice').value);
+  const waste = parseFloat(document.getElementById('wastePct').value) / 100;
+  const proc = parseFloat(document.getElementById('processCost').value);
+  const margin = parseFloat(document.getElementById('marginPct').value) / 100;
+  if ([cp, waste, proc, margin].some(v => !isFinite(v)) || waste >= 1 || margin >= 1) {
+    ['pCottonNeed','pCottonCost','pTotalCost','pSellPrice'].forEach(id => document.getElementById(id).textContent = '—');
+    return;
+  }
+  const need = 1 / (1 - waste);
+  const cottonCost = need * cp;
+  const total = cottonCost + proc;
+  const sell = total / (1 - margin);
+  document.getElementById('pCottonNeed').textContent = fmt(need, 3) + ' kg';
+  document.getElementById('pCottonCost').textContent = '$' + fmt(cottonCost, 2);
+  document.getElementById('pTotalCost').textContent = '$' + fmt(total, 2);
+  document.getElementById('pSellPrice').textContent = '$' + fmt(sell, 2);
+}
+document.getElementById('btnPrice').addEventListener('click', calcPrice);
+['cottonPrice','wastePct','processCost','marginPct'].forEach(id => {
+  document.getElementById(id).addEventListener('input', calcPrice);
+});
+calcPrice();
+
+/* ============================================================
+   NOTES (localStorage)
+   ============================================================ */
+const NOTE_KEY = 'textile-notes-v1';
+let notes = [];
+let activeNoteId = null;
+
+function loadNotes() {
+  try {
+    notes = JSON.parse(localStorage.getItem(NOTE_KEY)) || [];
+  } catch(e) { notes = []; }
+  if (!Array.isArray(notes)) notes = [];
+  if (notes.length === 0) {
+    notes.push({
+      id: uid(),
+      title: 'Ghi chú đầu tiên',
+      content: 'Ví dụ ghi chú hiện trường:\n- Lô 24B: Ne 30, CVm 11.8%, IPI 42\n- Khách báo lỗi dọc thưa ở cuộn 12–14\n- Đã yêu cầu mẫu đối chứng và ảnh vị trí lỗi\n- Hạn phản hồi: 72 giờ',
+      updated: Date.now()
+    });
+    persistNotes();
+  }
+  activeNoteId = notes[0]?.id || null;
+  renderNoteList();
+  renderEditor();
+}
+function persistNotes() {
+  localStorage.setItem(NOTE_KEY, JSON.stringify(notes));
+}
+function uid() {
+  return Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+}
+function renderNoteList() {
+  const list = document.getElementById('noteList');
+  list.innerHTML = notes
+    .slice()
+    .sort((a,b) => b.updated - a.updated)
+    .map(n => `
+      <button class="note-item ${n.id === activeNoteId ? 'active' : ''}" data-id="${n.id}">
+        <strong>${escapeHtml(n.title || 'Không tiêu đề')}</strong>
+        <span>${new Date(n.updated).toLocaleString('vi-VN')}</span>
+      </button>
+    `).join('');
+  list.querySelectorAll('.note-item').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeNoteId = btn.dataset.id;
+      renderNoteList();
+      renderEditor();
+    });
+  });
+}
+function renderEditor() {
+  const note = notes.find(n => n.id === activeNoteId);
+  const titleEl = document.getElementById('noteTitle');
+  const contentEl = document.getElementById('noteContent');
+  const statusEl = document.getElementById('noteStatus');
+  if (!note) {
+    titleEl.value = '';
+    contentEl.value = '';
+    statusEl.textContent = 'Chưa có ghi chú nào.';
+    return;
+  }
+  titleEl.value = note.title;
+  contentEl.value = note.content;
+  statusEl.textContent = 'Đang mở: ' + (note.title || 'Không tiêu đề');
+}
+document.getElementById('newNoteBtn').addEventListener('click', () => {
+  const note = { id: uid(), title: 'Ghi chú mới', content: '', updated: Date.now() };
+  notes.push(note);
+  activeNoteId = note.id;
+  persistNotes();
+  renderNoteList();
+  renderEditor();
+  document.getElementById('noteTitle').focus();
+});
+document.getElementById('saveNoteBtn').addEventListener('click', () => {
+  const note = notes.find(n => n.id === activeNoteId);
+  if (!note) return;
+  note.title = document.getElementById('noteTitle').value.trim() || 'Không tiêu đề';
+  note.content = document.getElementById('noteContent').value;
+  note.updated = Date.now();
+  persistNotes();
+  renderNoteList();
+  document.getElementById('noteStatus').textContent = 'Đã lưu lúc ' + new Date().toLocaleTimeString('vi-VN');
+});
+document.getElementById('deleteNoteBtn').addEventListener('click', () => {
+  if (!activeNoteId) return;
+  if (!confirm('Xóa ghi chú này?')) return;
+  notes = notes.filter(n => n.id !== activeNoteId);
+  activeNoteId = notes[0]?.id || null;
+  persistNotes();
+  renderNoteList();
+  renderEditor();
+});
+loadNotes();
+
+/* ============================================================
+   FLASHCARDS
+   ============================================================ */
+let flashDeck = [];
+let flashIndex = 0;
+let flashFlipped = false;
+let flashCat = 'all';
+const flashcardEl = document.getElementById('flashcard');
+
+function buildFlashDeck() {
+  flashDeck = GLOSSARY.filter(x => flashCat === 'all' || x.cat === flashCat);
+  flashIndex = 0;
+  flashFlipped = false;
+  renderFlashcard();
+}
+function renderFlashcard() {
+  const card = flashDeck[flashIndex];
+  const counter = document.getElementById('flashCounter');
+  const bar = document.getElementById('flashBar');
+  if (!card) {
+    document.getElementById('flashTerm').textContent = '—';
+    document.getElementById('flashSub').textContent = '';
+    document.getElementById('flashBackTerm').textContent = '—';
+    document.getElementById('flashBackSub').textContent = '';
+    counter.textContent = '0 / 0';
+    bar.style.width = '0%';
+    return;
+  }
+  flashcardEl.classList.toggle('flipped', flashFlipped);
+  document.getElementById('flashTerm').textContent = card.vi;
+  document.getElementById('flashSub').textContent = card.en;
+  document.getElementById('flashBackTerm').textContent = card.zh;
+  document.getElementById('flashBackSub').innerHTML = `
+    <div style="font-size:14px;color:var(--accent-2);font-style:italic;">${escapeHtml(card.py)}</div>
+    <div style="margin-top:8px;">${escapeHtml(card.en)}</div>
+  `;
+  counter.textContent = `${flashIndex + 1} / ${flashDeck.length}`;
+  bar.style.width = ((flashIndex + 1) / flashDeck.length * 100) + '%';
+}
+flashcardEl.addEventListener('click', () => {
+  flashFlipped = !flashFlipped;
+  flashcardEl.classList.toggle('flipped', flashFlipped);
+});
+document.getElementById('flashNext').addEventListener('click', () => {
+  if (flashDeck.length === 0) return;
+  flashIndex = (flashIndex + 1) % flashDeck.length;
+  flashFlipped = false;
+  renderFlashcard();
+});
+document.getElementById('flashPrev').addEventListener('click', () => {
+  if (flashDeck.length === 0) return;
+  flashIndex = (flashIndex - 1 + flashDeck.length) % flashDeck.length;
+  flashFlipped = false;
+  renderFlashcard();
+});
+document.getElementById('flashShuffle').addEventListener('click', () => {
+  for (let i = flashDeck.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [flashDeck[i], flashDeck[j]] = [flashDeck[j], flashDeck[i]];
+  }
+  flashIndex = 0;
+  flashFlipped = false;
+  renderFlashcard();
+});
+document.getElementById('flashKnown').addEventListener('click', () => {
+  document.getElementById('flashNext').click();
+});
+document.getElementById('flashUnknown').addEventListener('click', () => {
+  document.getElementById('flashNext').click();
+});
+document.getElementById('flashChips').addEventListener('click', e => {
+  const btn = e.target.closest('.chip');
+  if (!btn) return;
+  flashCat = btn.dataset.fcat;
+  document.querySelectorAll('#flashChips .chip').forEach(c => c.classList.toggle('active', c === btn));
+  buildFlashDeck();
+});
+buildFlashDeck();
+
+/* Keyboard shortcuts for flashcards */
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('view-flashcards').classList.contains('active')) return;
+  if (e.key === 'ArrowRight') document.getElementById('flashNext').click();
+  if (e.key === 'ArrowLeft') document.getElementById('flashPrev').click();
+  if (e.key === ' ') { e.preventDefault(); flashcardEl.click(); }
+});
+</script>
+</body>
+</html>
